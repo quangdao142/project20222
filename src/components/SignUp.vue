@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios'
+import { onMounted } from 'vue'
 export default{
     name: 'SignUp',
     data(){
@@ -19,9 +20,15 @@ export default{
 
             console.warn(result)
             if(result.status == 201){
-                alert("Sign up done")
                 localStorage.setItem("user-info", JSON.stringify(result.data))
+                this.$router.push({name:'Home'})
             }
+        }
+    },
+    mounted(){
+        let user = localStorage.getItem('user-info')
+        if(user){
+            this.$router.push({name:'Home'})
         }
     }
 }
@@ -34,17 +41,12 @@ export default{
         <input type="text" v-model="email" placeholder="Enter Email">
         <input type="password" v-model="password" placeholder="Enter Password">
         <button v-on:click="signUp">Sign Up</button>
+        <p>
+            <RouterLink to = "/login">Login</RouterLink>
+        </p>
     </div>
 </template>
 
-<style scoped>
-.signup input{
-    margin: 5px;
-    padding: 5px;
-    display: block;
-}
-.signup button{
-    margin: 5px;
-    cursor: pointer;
-}
+<style>
+
 </style>

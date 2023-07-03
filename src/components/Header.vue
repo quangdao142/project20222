@@ -1,35 +1,40 @@
+<!-- Day la Header cu -->
 <script>
-
+export default{
+    name:'Header',
+    methods:{
+        logout(){
+            localStorage.clear()
+            this.$router.push({name: 'Login'})
+        }
+    }
+}
 </script>
 
 <template>
-    <div>
-        <div class="header">
-            <router-link class="logo" to="#">CompanyLogo</router-link>
-            <div class="header-right">
-                <router-link class="link" to="/">
-                <p class="item-menu">
-                    Home
-                </p>
-                </router-link>
-                <router-link class="link" to="/about">
-                    <p class="item-menu">
-                        About Us
-                    </p>
-                </router-link>
-                <router-link class="link" to="/contact">
-                    <p class="item-menu">
-                        Contact
-                    </p>
-                </router-link>
-            </div>
-        </div>
-    </div>
+<div class="nav">
+    <RouterLink to = "/">Home</RouterLink>
+    <RouterLink to = "/add">Add Blog</RouterLink>
+    <a v-on:click="logout" href="#">Logout</a>
+</div>
 </template>
 
-<style scoped>
-.header{
-  left: 0px;
-  top: 0px;
+<style>
+.nav{
+    background-color: #333;
+    overflow: hidden;
+}
+.nav a{
+    float: left;
+    color: #f2f2f2f2;
+    padding: 14px 16px;
+    text-align: center;
+    font-size: 17px;
+    text-decoration: none;
+    margin-right: 5px;
+}
+.nav a:hover{
+    background-color: #ddd;
+    color: #333;
 }
 </style>
